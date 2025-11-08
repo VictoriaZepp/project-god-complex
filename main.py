@@ -1,16 +1,16 @@
-import config           # lädt die Einstellungen (Größe, Tage, Wahrscheinlichkeiten, Seed)
-import cells            # Nachbarn-Funktion
-import utils            # Random-Setup + Druckausgabe
-import world            # Logik für Tag/Nacht und Welt-Erzeugung
+import config          
+import cells         
+import utils            
+import world            
 
 
-def main():                     #Setup
+def main():                    
     rng = utils.random_num()
     grid = world.make_world()
     h, w = len(grid), len(grid[0])
 
 
-    for day in range(1, config.days +1):
+    for day in range(1, config.days +1):            #Starte hier schon mit 1 und nicht mit 0 weil es schöner aussieht
         world.start_new_day(grid)
         world.simulate_day(grid, rng)
 

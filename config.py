@@ -1,16 +1,15 @@
-#Grid-Größe (2D-Raum)
 width = 3       #Anzahl columns (x) → 
 height = 3      #Anzahl rows (y) ↓
 
-#Zeit: so viele Tage
+#so viele Tage
 days = 3
 
 #Wahrscheinlichkeiten
-p_sun = 0.5     #Pro Zelle am Tag
-p_rain = 0.4    #Pro Zelle am Tag
+p_sun = 0.5     
+p_rain = 0.4    
 
-# Wenn in der Zelle Sonne scheint, verringert das die Regenchance um diesen Anteil.
-# Beispiel: p_rain=0.4 und REDUCTION=0.2 -> effektive Regenchance = 0.4*(1-0.2)=0.32
+#Wenn sun = True reduziert es die Wahrscheinlichkeit, dass es regnet
+#Beispiel: p_rain=0.4 und rain_reduction_when_sun=0.2 -> Regenchance = 0.4*(1-0.2)=0.32
 rain_reduction_when_sun = 0.2
 
-seed = None  # Zufalls-Seed 
+seed = None  # Zufalls-Seed, bei None ist es immer verschieden
