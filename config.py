@@ -1,5 +1,5 @@
-width = 3       #Anzahl columns (x) → 
-height = 3      #Anzahl rows (y) ↓
+width = 3       #Anzahl columns (x) 
+height = 3      #Anzahl rows (y) 
 
 #so viele Tage
 days = 3

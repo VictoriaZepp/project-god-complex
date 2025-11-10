@@ -21,7 +21,7 @@ def start_new_day(world):       #Resetet jeden Tag, also wenn ein neuer Tag star
             cell["rain"] = False
 
 def simulate_day(world, random_generator):
-    for y,row in enumerate(world):
+    for y, row in enumerate(world):
         for x, cell in enumerate(row):
 
             if random_generator.random() < config.p_sun:

@@ -7,7 +7,6 @@ import world
 def main():                    
     rng = utils.random_num()
     grid = world.make_world()
-    h, w = len(grid), len(grid[0])
 
 
     for day in range(1, config.days +1):            #Startet hier schon mit 1 und nicht mit 0 
