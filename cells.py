@@ -1,4 +1,4 @@
-def make_cell():                                        #Beschreibt wie eine Zelle aussieht und startet
+def make_cell():                                        
     return{"sun": False, "rain": False, "wet": False}   #Vor dem ersten Tag (begin) ist noch nichts deshlab False 
 
 def get_neighbors(y, x, height, width):     #schaut ob es links, rechts, oben oder unten eine Nachbarzelle gibt
