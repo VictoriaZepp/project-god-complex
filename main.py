@@ -10,7 +10,7 @@ def main():
     h, w = len(grid), len(grid[0])
 
 
-    for day in range(1, config.days +1):            #Starte hier schon mit 1 und nicht mit 0 weil es schöner aussieht
+    for day in range(1, config.days +1):            #Startet hier schon mit 1 und nicht mit 0 
         world.start_new_day(grid)
         world.simulate_day(grid, rng)
 
