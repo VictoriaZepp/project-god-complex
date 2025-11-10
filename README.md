@@ -19,8 +19,6 @@ def simulate_day(world, random_generator):  Basically I go through my matrix and
 utils.py:
 def random_num(): creates my random number generator for seeds. If I set seed to a number it will always give me back the same random numbers. If I set it to None it will give me back new random numbers for every day. 
 I tested this by printing random numbers and seeing that they change when I run the program again.
-print_world(): prints my 2D world as symbols in the terminal.
-. means nothing happens 
 
 
 
