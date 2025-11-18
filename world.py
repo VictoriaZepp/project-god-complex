@@ -11,8 +11,8 @@ class World:
                      for _ in range(self.cfg.height)]
         self.is_day = True                                              #Welt beginnt am Tag, True bedeutet Tag
 
-#---------Raum/Position-------------------
     def in_bounds(self, y, x) -> bool:
+        """Raum/Position im Grid"""
         return 0 <= y < self.cfg.height and 0 <= x < self.cfg.width     #y darf nicht negativ sein und kleiner als die Höhe sein, darf nicht negativ sein und kleiner als die Breite sein
     def neighbors(self, x, y):
         nbrs = []
@@ -21,8 +21,8 @@ class World:
                 nbrs.append((ny,nx))
         return nbrs
         
-#-----------Zeit/Wetter------------------
     def start_new_day(self):
+        """Zeit/Wetter in der Zelle"""
         for row in self.grid:
             for cell in row:
                 cell.reset_new_day()                        #Das setzt die Zelle wieder auf den Anfangszustand
