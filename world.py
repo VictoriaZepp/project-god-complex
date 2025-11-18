@@ -1,46 +1,48 @@
-import cells
-import config
+import random
+from cell import Cell
 
-def make_world():
-    world = []              #Leere Liste für alle Zeilen
+class World:
+    """2D grid of cells + day/night cycle"""
+    def __init__(self, config):
+        self.cfg = config
+        if self.cfg is not None:
+            random.seed(self.cfg.seed)
+        self.grid = [[Cell() for _ in range(self.cfg.width)]            #erstellt das Gitter. Die äußere Schleife macht Zeilen (height), die innere Schleife macht Spalten (width).
+                     for _ in range(self.cfg.height)]
+        self.is_day = True                                              #Welt beginnt am Tag, True bedeutet Tag
 
-    for y in range(config.height):      
-        row = []                        
-        for x in range(config.width):   
-            row.append(cells.make_cell())      
-
-        world.append(row)
+#---------Raum/Position-------------------
+    def in_bounds(self, y, x) -> bool:
+        return 0 <= y < self.cfg.height and 0 <= x < self.cfg.width
+    def neighbors(self, x, y):
+        nbrs = []
+        for ny, nx in [(y, x-1), (y, x+1), (y-1, x), (y+1, x)]:
+            if self.in_bounds(ny, nx):
+                nbrs.append((ny,nx))
+            return nbrs
+        
+#-----------Zeit/Wetter------------------
+    def start_new_day(self):
+        for row in self.grid:
+            for cell in row:
+                cell.reset_new_day()                        #Das setzt die Zelle wieder auf den Anfangszustand
+        self.is_day = True                                  #nach dem Reset ist es jetzt wieder Tag
     
-    return world
-
-def start_new_day(world):       #Resetet jeden Tag, also wenn ein neuer Tag startet sind alle Zellen auf False
-    for row in world:
-        for cell in row:
-            cell["wet"] = False
-            cell["sun"] = False
-            cell["rain"] = False
-
-def simulate_day(world, random_generator):
-    for y, row in enumerate(world):
-        for x, cell in enumerate(row):
-
-            if random_generator.random() < config.p_sun:
-                cell["sun"] = True
-            else:
-                cell["sun"] = False 
-
-            effective_rain = config.p_rain
-            if cell["sun"]:
-                effective_rain = max(0.0, config.p_rain * (1 - config.rain_reduction_when_sun))
-
-            if random_generator.random() < effective_rain:
-                cell["rain"] = True
-            else:
-                cell["rain"] = False
-            
-            if cell["rain"]:
-                cell["wet"] = True
-
-
-def simulate_night(world):
-    pass
+    def simulate_day(self):
+        for row in self.grid:
+            for cell in row:
+                sun_today = (random.random() < self.cfg.p_sun)
+                effective_rain = self.cfg.p_rain            #Regenchance reduziert wenn es sonnig ist.
+                if sun_today:
+                    effective_rain = self.cfg.p_rain * (1 - self.cfg.rain_reduction_when_sun)
+                rain_today = (random.random() < effective_rain)
+                cell.apply_weather(sun_today, rain_today)           #übergibt das Ergebnis an die Zelle
+                
+    def simulate_night(self):
+        self.is_day = False
+    
+    def simulate(self, days: int):
+        for _ in range(days):
+            self.start_new_day()
+            self.simulate_day()
+            self.simulate_night()
