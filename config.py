@@ -1,4 +1,5 @@
 class Config:
+    """Speichert Einstellungen: Breite, Höhe, Tage, Wahrscheinlichkeiten."""
     def __init__(self,
                   width=3,
                   height=3,

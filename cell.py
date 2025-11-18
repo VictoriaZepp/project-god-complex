@@ -1,6 +1,7 @@
 class Cell:
+    """stellt eine Position im Raster dar"""
     def __init__(self):
-        """Ein Platz im Raster. Kennt seinen eigenen Wetterzustand."""
+        """Zelle kennt seinen eigenen Wetterzustand."""
         self.sun = False
         self.rain = False
         self.wet = False
