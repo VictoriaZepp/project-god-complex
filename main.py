@@ -16,7 +16,7 @@ def main():
 
     w.simulate(cfg.days)
 
-    y = cfg.height // 2
+    y = cfg.height // 2                 #gibt mittlere Position des Grid an ohne Kommazahlen, Hardcoded 1 würde nur bei einem 3x3 Grid funktionieren.
     x = cfg.width // 2
 
     print("Center:", w.grid[y][x])
