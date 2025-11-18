@@ -1,18 +1,18 @@
 class Cell:
     def __init__(self):
-        """One place in the grid. It knows its own weather state."""
+        """Ein Platz im Raster. Kennt seinen eigenen Wetterzustand."""
         self.sun = False
         self.rain = False
         self.wet = False
     
     def reset_new_day(self):
-        """Everything starts dry/False again"""
+        """Alles startet trocken/falsch wieder."""
         self.sun = False
         self.rain = False
         self.wet = False
     
     def apply_weather(self, sun: bool, rain: bool):
-        """Set weather for today and if it rains wet becomes."""
+        """Setzt Wetter für heute und falls es regnet ist es nass."""
         self.sun = sun
         self.rain = rain
         if rain:
