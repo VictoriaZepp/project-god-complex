@@ -13,13 +13,13 @@ class World:
 
 #---------Raum/Position-------------------
     def in_bounds(self, y, x) -> bool:
-        return 0 <= y < self.cfg.height and 0 <= x < self.cfg.width
+        return 0 <= y < self.cfg.height and 0 <= x < self.cfg.width     #y darf nicht negativ sein und kleiner als die Höhe sein, darf nicht negativ sein und kleiner als die Breite sein
     def neighbors(self, x, y):
         nbrs = []
         for ny, nx in [(y, x-1), (y, x+1), (y-1, x), (y+1, x)]:
             if self.in_bounds(ny, nx):
                 nbrs.append((ny,nx))
-            return nbrs
+        return nbrs
         
 #-----------Zeit/Wetter------------------
     def start_new_day(self):
@@ -41,7 +41,7 @@ class World:
     def simulate_night(self):
         self.is_day = False
     
-    def simulate(self, days: int):
+    def simulate(self, days):
         for _ in range(days):
             self.start_new_day()
             self.simulate_day()
