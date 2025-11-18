@@ -19,6 +19,5 @@ def random_num(): creates my random number generator for seeds. If I set seed to
 I tested this by printing random numbers and seeing that they change when I run the program again.
 
 
-rain_reduction_when_sun: This was a bit tricky to understand so I had to use AI with this part. 
 
 
